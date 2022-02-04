@@ -1,21 +1,50 @@
+// Fizz＆Buzzの初期値を格納する定数
+const MultipleFizz = 3;
+const MultipleBuzz = 5;
+// Fizz＆Buzzに何回倍数をかけたかを管理する変数
+let FizzMultipleCount = 1;
+let BuzzMultipleCount = 1;
 
-// 数字と数字の差分の1サイクルを配列に格納
-let arrCycle = [2, 1, 3, 1, 2, 3];
-// FizzとBuzzの1サイクルを配列に格納
-let arrFizzBuzz = ['Buzz', 'Fizz', 'Fizz', 'Buzz', 'Fizz', 'FizzBuzz'];
-let outputValue = 0;
-// Fizz~FizzBuzzを1サイクルとしてループを回す回数
-let LoopTimes = 7;
+// Fizz＆Buzzぞれぞれの値を管理する変数
+let outputValueFizz = 0;
+let outputValueBuzz = 0;
 
-for (let i = 0; i < LoopTimes; i++){
-
-    outputValue += 3;
-    console.log('Fizz ' + outputValue);
+for (let i = 0; i <= 100; i++) {
     
-    for (let j = 0; j < arrCycle.length; j++) {
-        outputValue += arrCycle[j];
-        if (outputValue <= 99) {
-            console.log(arrFizzBuzz[j] +' '+ outputValue);
+    // Fizz＆Buzzの値を計算
+    outputValueFizz = MultipleFizz * FizzMultipleCount;
+    outputValueBuzz = MultipleBuzz * BuzzMultipleCount;
+
+    if(outputValueFizz >= 100) {
+        // Fizzが100以上でforを抜ける(Fizzの方が値が小さいためFizzで判定)
+        break;
+    }
+    
+
+    if (outputValueFizz === outputValueBuzz) {
+         if (outputValueFizz < 100) {
+            // 値が100より小さいとき出力
+            console.log(`FizzBuzz ${outputValueFizz}`);
+            FizzMultipleCount++;
+            BuzzMultipleCount++;
+        }   
+    } else if (outputValueBuzz - outputValueFizz >= 3  ) {
+        // FizzとBuzzの差が3より大きい時は、Fizzのみ出力
+        if (outputValueFizz < 100) {
+            // 値が100より小さいとき出力
+            console.log(`Fizz ${outputValueFizz}`);
+            FizzMultipleCount++;
+        }
+    } else {
+        if (outputValueFizz < 100) {
+            // 値が100より小さいとき出力
+            console.log(`Fizz ${outputValueFizz}`);
+            FizzMultipleCount++;
+        }
+        if (outputValueBuzz < 100) {
+            // 値が100より小さいとき出力
+            console.log(`Buzz ${outputValueBuzz}`);
+            BuzzMultipleCount++;
         }
     }
 }
